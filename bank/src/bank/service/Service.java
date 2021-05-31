@@ -35,4 +35,12 @@ public class Service {
 	public int query(String id) {
 		return dao.query(id);
 	}
+
+	public boolean search(String id) {
+		return dao.search(id);
+	}
+
+	public int transfer(String id, String rId, int money) {
+		return dao.transfer(id, rId, money);
+	}
 }

@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	TOTAL MONEY: ${money }
+	<p></p>
+	
 	<form action="withdraw.do" method="post">
 		MONEY: <input type="text" name="money"/><br>
 		<input type="submit" value="WITHDRAW"/>

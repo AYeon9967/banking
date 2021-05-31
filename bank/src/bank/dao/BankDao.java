@@ -180,4 +180,37 @@ public class BankDao {
 		
 		return money;
 	}
+
+	public boolean search(String id) {
+		boolean result = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = connect();
+			pstmt = conn.prepareStatement("select id from account where id=?;");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = true;
+			}
+		} catch(Exception e) {
+			System.out.print("Search error" + e);
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		return result;
+	}
+
+	public int transfer(String id, String rId, int money) {
+		
+		int tMoney = this.withdraw(id, money);
+		if(tMoney < 0) {
+			return tMoney;
+		}
+		this.deposit(rId, money);
+		
+		return tMoney;
+	}
 }
